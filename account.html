@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+    <title>每日一记</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+  </head>
+  <body>
+    <div id="div1"><img src="image/bg.jpg" /></div>     
+    <div class="container">
+    <h1>记账</h1>
+        <div class="callback">
+          <a href="index.html"><button  class="btn btn-success" >返回首页</button></a>
+        </div>
+      <div class="account">
+        <div class="count">
+          <h2>当前余额:</h2>
+        </div>
+        <div class="eat">
+          <form action="" method="post"> 
+              <div class="money sub">
+                <label>金额:</label><input type="text"  placeholder="扣除金额" class="eatInput" aria-label="..." onkeyup="clearNoNum(this)" onblur="clearNoNum(this)">
+                <label class="notes">金额不能为空</label>
+              </div>
+              <div class="money money1">
+                <label>区段:</label>
+                <select class="form-control" name="myselect" id="myselect">
+                  <option value ="1">午饭</option>
+                  <option value ="2">晚饭</option>
+                </select>
+              </div>
+              <div class="money beizhu"></div>
+                <label for="">备注:</label>
+                <textarea class="form-control" rows="3" name="" id="" cols="15" class="money2"></textarea>
+            <div class="eatSubmit">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="">提交</button>
+            </div>    
+          </form>
+        </div>
+        <div class="accountModal">
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">确认提交信息</h4>
+                </div>
+                <div class="modal-body">
+                  <span class="jine text-center">扣除金额:</span>
+                  <span class="quduan text-center">区段:午饭</span>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary" data-dismiss="modal">确认</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="recharge">
+          <a href="recharge.html"><button  class="btn btn-success" >充值</button></a>
+        </div>
+      </div>
+    </div>
+  
+    <script src="js/jquery.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+  	function clearNoNum(obj)    
+		{      
+		    obj.value = obj.value.replace(/[^\d.]/g,"");      
+		    obj.value = obj.value.replace(/\.{2,}/g,".");     
+		    obj.value = obj.value.replace(/^\./g,"");     
+		    obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");    
+		    obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3');   
+		}
+        var input=$('.sub input')
+        var eat=$('.eat .eatSubmit button')
+        var jine=$('.jine')
+        var quduan=$('.quduan')
+        $("#myselect").change(function(){
+          var opt=$("#myselect").val();
+          if(opt==1){
+            quduan.get(0).innerHTML='区段:午饭'
+          }else if(opt==2){
+            quduan.get(0).innerHTML='区段:晚饭'
+          }
+        });
+        var sele=$(".money1 option:selected").text();
+        eat.on('click',function(){
+        	// if($('.sub input').val())
+        	alert(typeof($('.sub input').val()+0))
+          jine.get(0).innerHTML='扣除金额:'+input.val()
+        })
+
+
+
+
+    var Eat=$('.eatSubmit button')
+    var notes=$('.notes')
+    Eat.on('click',function(){
+      if(isEmpty(input.value)){
+        notes.css('color','#ff0000') 
+      }else{
+        notes.css('opacity','0') 
+      }
+    
+   })
+    $(document).ready(function(){ 
+         $("input").blur(function(){
+          var value=this.value;
+                if(isEmpty(value)){   
+                     notes.css('color','#ff0000') 
+                     Eat.attr('data-target','')
+
+                }else{
+                  notes.css('opacity','0') 
+                  Eat.attr('data-target','#myModal')
+                }
+         })
+    });
+    function isEmpty(value){  
+         if(undefined==value||value==""||value==null){  
+             return true;  
+         }else{  
+             return false;  
+         }  
+     };
+    </script>
+  </body>
+</html>

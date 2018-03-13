@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+    <title>充值页面</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+  </head>
+  <body>
+  <div id="div1"><img src="image/bg.jpg" /></div>
+  <div class="container">
+    <h1>充值</h1>  
+    <div class="callback">
+        <a href="index.html"><button  class="btn btn-success" >返回首页</button></a>
+    </div>
+    <div class="row">   
+        <div class="payBox col-sm-4">
+            <div class="return">
+              <a href="account.html"><button  class="btn btn-success">返回记账</button></a>
+            </div>
+          <div class="pay">
+               <form action="" method="post"> 
+                    <label>金额:</label><input type="text"  placeholder="充值金额" class="payInput" aria-label="...">
+                    <label class="notes">金额不能为空</label>
+                <div class="paySubmit">
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="">提交</button>
+                </div>    
+              </form>
+          </div>
+          <h2>当前余额:</h2>
+        </div>
+    <div class="payRecord col-sm-7" style="overflow:auto; height:300px;">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th width="22%">日期</th>
+            <th>记录</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2017.11.27</td>
+            <td>充值100元</td>
+          </tr>
+          <tr>
+            <td>2017.11.28</td>
+            <td>充值50元</td>
+          </tr>
+          <tr>
+            <td>2017.11.28</td>
+            <td>充值200元</td>
+          </tr>
+          <tr>
+            <td>2017.11.29</td>
+            <td>充值200元</td>
+          </tr>
+          <tr>
+            <td>2017.11.29</td>
+            <td>充值200元</td>
+          </tr>
+          <tr>
+            <td>2017.11.29</td>
+            <td>充值200元</td>
+          </tr>
+          <tr>
+            <td>2017.11.29</td>
+            <td>充值200元</td>
+          </tr>
+          <tr>
+            <td>2017.11.29</td>
+            <td>充值200元</td>
+          </tr>
+          <tr>
+            <td>2017.11.29</td>
+            <td>充值200元</td>
+          </tr>
+          <tr>
+            <td>2017.11.29</td>
+            <td>充值200元</td>
+          </tr>
+          <tr>
+            <td>2017.11.29</td>
+            <td>充值200元</td>
+          </tr>
+          <tr>
+            <td>2017.11.29</td>
+            <td>充值200元</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+    </div>
+      <div class="accountModal">
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title" id="myModalLabel">确认充值信息</h4>
+                      </div>
+                      <div class="modal-body">
+                          <span class="chongzhi text-center">充值金额为:</span>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="submit" class="btn btn-primary" data-dismiss="modal">确认</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+    
+    <script src="js/jquery.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+    var input=$('.pay input')
+    var paySubmit=$('.paySubmit button')
+    var money=$('.accountModal .chongzhi')
+    var Pay=$('.paySubmit button')
+    var notes=$('.notes')
+        paySubmit.on('click',function(){
+            money.get(0).innerHTML='充值金额:'+input.val()
+        })
+   Pay.on('click',function(){
+    if(isEmpty(input.value)){
+      notes.css('color','#ff0000') 
+    }else{
+      notes.css('opacity','0') 
+    }
+    
+   })
+    $(document).ready(function(){ 
+         $("input").blur(function(){
+          var value=this.value;
+                if(isEmpty(value)){   
+                     notes.css('color','#ff0000') 
+                     $('.paySubmit button').attr('data-target','')
+
+                }else{
+                  notes.css('opacity','0') 
+                  Pay.attr('data-target','#myModal')
+                }
+         })
+    });
+    function isEmpty(value){  
+         if(undefined==value||value==""||value==null){  
+             return true;  
+         }else{  
+             return false;  
+         }  
+     };
+        
+    </script>
+  </body>
+</html>

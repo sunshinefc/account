@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+    <title>管理页面</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+  </head>
+  <body>
+  <div id="div1"><img src="image/bg.jpg" /></div>
+  <div class="container">
+  <div class="current">
+    <h5>当前时间:</h5>  
+    <span>上午</span>
+  </div>
+    <div class="plus">
+      <h1>姓名:xxx</h1>
+      <h3>余额:</h3>
+    </div>
+    <div class="top">
+        <div class="time">
+          <h4>时间:2017/11/20-2017/11/24</h4>
+        </div> 
+        <div class="rePay">
+
+          <a href="account.html"><button  class="btn btn-success">记账</button></a>
+          <a href="recharge.html"><button  class="btn btn-success">充值</button></a>
+        </div>
+    </div>
+    <div class="manage">
+      <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th></th>
+            <th data-toggle="tooltip" data-placement="top" title="2017/11/24">周一</th>
+            <th data-toggle="tooltip" data-placement="top" title="2017/11/24">周二</th>
+            <th data-toggle="tooltip" data-placement="top" title="2017/11/24">周三</th>
+            <th data-toggle="tooltip" data-placement="top" title="2017/11/24">周四</th>
+            <th data-toggle="tooltip" data-placement="top" title="2017/11/24">周五</th>
+            <th>总计</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>上午</td>
+            <td data-toggle="tooltip" data-placement="top" title="备注">12</td>
+            <td data-toggle="tooltip" data-placement="top" title="备注">0</td>
+            <td data-toggle="tooltip" data-placement="top" title="备注">1</td>
+            <td data-toggle="tooltip" data-placement="top" title="备注">0</td>
+            <td data-toggle="tooltip" data-placement="top" title="备注">0</td>
+            <td>13</td>
+          </tr>
+          <tr>
+            <td>下午</td>
+            <td data-toggle="tooltip" data-placement="top" title="备注">2</td>
+            <td data-toggle="tooltip" data-placement="top" title="备注">0</td>
+            <td data-toggle="tooltip" data-placement="top" title="备注">9</td>
+            <td data-toggle="tooltip" data-placement="top" title="备注">10</td>
+            <td data-toggle="tooltip" data-placement="top" title="备注">10</td>
+            <td>31</td>
+          </tr>
+          <tr>
+            <td>余额</td>
+            <td>200</td>
+            <td>200</td>
+            <td>190</td>
+            <td>180</td>
+            <td>170</td>
+            <td>170</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>  
+    <h1 class="text-center">总额:</h1>
+  </div>
+  
+    <script src="js/jquery.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  <script>
+    var day=new Date().getDay();
+    switch (day)
+    {
+      case 0:
+        x="星期日";
+        break;
+      case 1:
+        x="星期一";
+        break;
+      case 2:
+        x="星期二";
+        break;
+      case 3:
+        x="星期三";
+        break;
+      case 4:
+        x="星期四";
+        break;
+      case 5:
+        x="星期五";
+        break;
+      case 6:
+        x="星期六";
+        break;
+    }
+    var s;
+    function noon(hour){
+      if(hour<12){
+        s='上午'
+
+      }else if(12<=hour<=24){
+        s='下午'
+      }
+      return s
+    }
+    var myDate = new Date();
+    var time=myDate.getTime();
+    var year=myDate.getFullYear();
+    var month=myDate.getMonth()+1;
+    var day=myDate.getDate();
+    var week=myDate.getDay();
+    var hour=myDate.getHours();
+
+    var date=myDate.toLocaleDateString()
+    var current=$('.current h5')
+    // current.get(0).innerHTML='当前时间:'+date+x
+    current.get(0).innerHTML='当前时间:'+year+'年'+month+'月'+day+'日'+x;
+    noon(hour)
+    $('.current span').get(0).innerHTML=s;
+  </script>
+  </body>
+</html>
